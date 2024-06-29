@@ -1,0 +1,16 @@
+# Since my name is Makefile-3 but not the default Makefile,
+# to use me you have to specify: make -f Makefile-3
+
+mainprog : mainprog.o bb.o rect.o
+	gcc -g $^ -o $@
+
+%.o : %.c
+	gcc -g -c $<
+
+clean :
+	rm -f *.o mainprog .depend
+.PHONY: clean
+
+.depend: mainprog.c bb.c rect.c
+	gcc -MM $^ > .depend
+include .depend

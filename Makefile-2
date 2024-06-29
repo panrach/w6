@@ -1,0 +1,16 @@
+# Since my name is Makefile-2 but not the default Makefile,
+# to use me you have to specify: make -f Makefile-2
+
+mainprog : mainprog.o bb.o rect.o
+	gcc -g $^ -o $@
+
+%.o : %.c
+	gcc -g -c $<
+
+mainprog.o : bb.h rect.h
+bb.o : bb.h rect.h
+rect.o : rect.h
+
+clean :
+	rm -f *.o mainprog
+.PHONY: clean
